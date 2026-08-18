@@ -1,0 +1,24 @@
+name: iOS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build for the simulator
+        working-directory: ios/FleetManager
+        run: |
+          xcodebuild \
+            -project FleetManager.xcodeproj \
+            -scheme FleetManager \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            build
