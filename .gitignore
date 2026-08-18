@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment
+.env
+.env.local
+*.db
+*.sqlite3
+
+# macOS
+.DS_Store
+
+# Xcode
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
+# Android
+android/.gradle/
+android/local.properties
+android/build/
+android/app/build/
+android/.idea/
+android/captures/
+*.iml
+
+# IDE
+.vscode/
+.idea/
