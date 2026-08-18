@@ -35,9 +35,15 @@ struct ProfileView: View {
         }
         .navigationTitle("Profile")
         .sheet(isPresented: $isChangingPassword) { ChangePasswordView() }
-        .confirmationDialog("Sign out?", isPresented: $isConfirmingSignOut) {
-            Button("Sign out", role: .destructive) { Task { await session.signOut() } }
+        // An alert rather than a confirmationDialog: on iPhone SwiftUI can render
+        // a dialog as a popover anchored to the attached view, which pins it to
+        // the top of the screen over the navigation title and drops the cancel
+        // button. An alert is always a centred modal with both actions intact.
+        .alert("Sign out?", isPresented: $isConfirmingSignOut) {
             Button("Cancel", role: .cancel) {}
+            Button("Sign out", role: .destructive) { Task { await session.signOut() } }
+        } message: {
+            Text("You will need to sign in again to see your trips.")
         }
     }
 }
